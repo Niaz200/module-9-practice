@@ -1,0 +1,172 @@
+Table of contents
+Simple Routing in Laravel
+Basic Routes:
+Route Parameters:
+Optional Parameters:
+Named Routes:
+Route Groups:
+Route with Middleware:
+Controller Routes:
+Resource Controller Routes:
+API Resource Routes:
+Advance Routing in Laravel
+Route Prefixing:
+Combined Route Group with Prefix and Middleware:
+Combined Named Route Group with Prefix and Middleware:
+Controllers Route Group:
+Route Middleware Group:
+
+Show less
+In Laravel, routes are defined in the routes directory, specifically in the web.php file for web routes and api.php file for API routes. Here are different types of routes you can define in Laravel:
+
+Simple Routing in Laravel
+Basic Routes:
+Define routes using the Route:: methods in the web.php file.
+
+Example:
+
+
+COPY
+Route::get('/', function () {
+       return view('welcome');
+});
+Route Parameters:
+Define routes with parameters to capture values from the URL.
+
+Example:
+
+
+COPY
+Route::get('/user/{id}', function ($id) {
+       return 'User ID: ' . $id;
+});
+Optional Parameters:
+Define optional parameters in routes.
+
+Example:
+
+
+COPY
+Route::get('/user/{name?}', function ($name = null) {
+       return 'User Name: ' . $name;
+});
+Named Routes:
+Give a route a name for easier referencing.
+
+Example:
+
+
+COPY
+Route::get('/profile', function () {
+                // ...
+})->name('profile');
+Route Groups:
+Group related routes together for applying middleware, prefixes, and more.
+
+Example:
+
+
+COPY
+Route::prefix('admin')->group(function () {
+       Route::get('/dashboard', function () {
+              return 'Admin Dashboard';
+        })->name('admin');
+        // ...
+});
+Route with Middleware:
+Apply middleware to routes for filtering HTTP requests.
+
+Example:
+
+
+COPY
+Route::get('/admin', function () {
+                // ...
+})->middleware('admin')->name('admin');
+Controller Routes:
+Define routes that point to controller methods.
+
+Example:
+
+
+COPY
+Route::get('/users', [UserController::class, 'index'])->name('users');
+Resource Controller Routes:
+Create routes for CRUD operations automatically using resource controllers.
+
+Example:
+
+
+COPY
+Route::resource('photos', PhotoController::class);
+API Resource Routes:
+API resource routes are similar to resource routes but are typically used for building API endpoints. They generate routes for standard CRUD operations but without the need for rendering views.
+
+Example:
+
+
+COPY
+Route::apiResource('products', ProductController::class);
+Advance Routing in Laravel
+Route Prefixing:
+Prefix a group of routes with a common path.
+
+Example:
+
+
+COPY
+Route::prefix('admin')->group(function () {
+    Route::get('/dashboard', [AdminController::class, 'dashboard']);
+});
+Combined Route Group with Prefix and Middleware:
+
+COPY
+Route::group(['prefix' => 'admin','middleware' => ['auth']], function() {
+    Route::get('/dashboard',[AdminController::class, 'dashboard'])->name('dashboard');
+});
+Combined Named Route Group with Prefix and Middleware:
+
+COPY
+Route::name('admin.')
+    ->prefix('admin')
+    ->middleware(['auth'])
+    ->group(function () {
+
+    Route::get('/users', function () {
+        // Route assigned name "admin.users"...
+        // Matches The "/admin/users" URL
+        // This /users URI only for logged in users
+    })->name('users');
+});
+
+// Or,
+
+Route::name('admin.')
+    ->group(['prefix' => 'admin','middleware' => ['auth']], function() {
+        // Route assigned name "admin.dashboard"
+        // Matches The "/admin/dashboard" URL
+        // This /dashboard URI only for logged in users
+    Route::get('/dashboard',[AdminController::class, 'dashboard'])->name('dashboard');
+});
+Controllers Route Group:
+
+COPY
+Route::controller(OrderController::class)->group(function () {
+    Route::get('/orders/{id}', 'show');
+    Route::post('/orders', 'store');
+});
+Route Middleware Group:
+
+COPY
+Route::middleware(['auth', 'is_admin'])->group(function () {
+    Route::get('/', function () {
+        // Uses auth & is_admin middlewares
+    });
+
+    Route::get('/user/profile', function () {
+        // Uses auth & is_admin middlewares
+    });
+});
+Thank you for taking the time to delve into this article.
+
+Happy Learning! 🚀

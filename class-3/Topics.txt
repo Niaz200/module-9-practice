@@ -1,0 +1,12 @@
+Leveraging Laravel Features for Web Development
+
+টপিক:
+
+Blade yield, content, Blade data passing, Asset binding, Including blade subview | layout, extend, include  | 
+Blade if-else, switch-case, loop, master | Understanding Blade Template 
+Engine & Attributes  | Working with Session Set, Get, Clear | Laravel Log Feature,
+
+নোট:
+
+Laravel Log Feature, Working with Session Set, Get, Clear | Understanding Blade Template Engine & Attributes | 
+Blade if-else, switch-case, loop, master layout, 

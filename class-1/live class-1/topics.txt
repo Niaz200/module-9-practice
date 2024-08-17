@@ -1,0 +1,11 @@
+Mastering Middleware and Controllers in Laravel
+
+টপিক:
+
+Resource Controller, Controller  | Single Action Controller |  Middleware Controller Concept In Details | 
+For Whole Application | Middleware Manipulate | Middleware Apply For Route And Route Group | Request Redirect | 
+Request Verification | Middleware Structure
+
+নোট:
+
+Middleware Structure, Request Verification, Request Redirect | Middleware Apply 
